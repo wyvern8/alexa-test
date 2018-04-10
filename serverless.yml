@@ -10,17 +10,23 @@ provider:
   timeout: 30 # optional, in seconds, default is 6
 
   stage: dev
-  region: ${env:AWS_REGION}
+  region: ${env:ALEXA_AWS_REGION}
 
 #  environment:
 #      GTM_GITHUB_WEBHOOK_SECRET: ${env:GTM_GITHUB_WEBHOOK_SECRET}
 
-iamRoleStatements:
-  - Effect: Allow
-    Action:
-      - dynamodb:UpdateItem
-    Resource:
-      Fn::GetAtt: [ AlexaTestTable, Arn ]
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        Fn::GetAtt: [ AlexaTestTable, Arn ]
+
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+      Resource:
+        Fn::GetAtt: [ AlexaTestTable, Arn ]
 
 
 package:
@@ -31,6 +37,9 @@ package:
 functions:
   alexaTestLambda:
     handler: dist/src/alexaTestLambda.handler
+    environment:
+      DYNAMO_DB_TABLE_ALEXA:
+        Ref: AlexaTestTable
     package:
       include:
         - dist/src/**
@@ -39,10 +48,10 @@ functions:
 
 resources:
   Resources:
-    EventsTable:
+    AlexaTestTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: AlexaTestTable
+        TableName: ${env:ALEXA_DYNAMO_TABLE}
         AttributeDefinitions:
           - AttributeName: uniq
             AttributeType: S

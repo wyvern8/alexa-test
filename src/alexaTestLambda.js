@@ -62,33 +62,26 @@ const handlers = {
         const factArr = data;
         const factIndex = Math.floor(Math.random() * factArr.length);
         const randomFact = factArr[factIndex];
-        const speechOutput = GET_FACT_MESSAGE + randomFact;
 
         let updateParams = {
-            TableName: 'AlexaTestTable',
+            TableName: process.env.ALEXA_DYNAMO_TABLE,
             Key: {
                 uniq: randomFact
             },
-            UpdateExpression: 'set uniq = :uniq, told = told + 1',
+            UpdateExpression: 'ADD told :told',
             ConditionExpression: 'attribute_not_exists(uniq) OR uniq = :uniq',
             ExpressionAttributeValues: {
-                ':uniq': randomFact
+                ':uniq': randomFact,
+                ':told': 1
             },
             ReturnValues: 'UPDATED_NEW'
         };
 
-        await ddb.update(updateParams).promise();
+        let updated = await ddb.update(updateParams).promise();
+        console.log(updated);
+        let toldCount = updated.Attributes.told;
 
-        let times = await ddb
-            .get({
-                TableName: 'AlexaTestTable',
-                Key: {
-                    HashKey: 'hashkey'
-                }
-            })
-            .promise();
-
-        console.log(times);
+        const speechOutput = GET_FACT_MESSAGE + randomFact + ` I've told people this fact ${toldCount} times!`;
 
         this.response.cardRenderer(SKILL_NAME, randomFact);
         this.response.speak(speechOutput);
