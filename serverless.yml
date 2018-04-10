@@ -1,0 +1,60 @@
+service: alexaTest
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  memorySize: 2048 # optional, in MB, default is 1024
+  timeout: 30 # optional, in seconds, default is 6
+
+  stage: dev
+  region: ${env:AWS_REGION}
+
+#  environment:
+#      GTM_GITHUB_WEBHOOK_SECRET: ${env:GTM_GITHUB_WEBHOOK_SECRET}
+
+iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - dynamodb:UpdateItem
+    Resource:
+      Fn::GetAtt: [ AlexaTestTable, Arn ]
+
+
+package:
+  individually: true
+  exclude:
+    - ".*/**"
+
+functions:
+  alexaTestLambda:
+    handler: dist/src/alexaTestLambda.handler
+    package:
+      include:
+        - dist/src/**
+    events:
+      - alexaSkill
+
+resources:
+  Resources:
+    EventsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: AlexaTestTable
+        AttributeDefinitions:
+          - AttributeName: uniq
+            AttributeType: S
+        KeySchema:
+          - AttributeName: uniq
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+
+custom:
+  dotenv:
+    path: .env
