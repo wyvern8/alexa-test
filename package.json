@@ -12,7 +12,9 @@
     "sls-deploy": "npm run build && node ./node_modules/serverless/bin/serverless deploy -v | tee ./sls.out && cat ./sls.out | grep ServiceEndpoint | sed 's/ServiceEndpoint[^https]*\\(https:\\/\\/.*\\)/\\1\\/alexa-test/' | sed 's/\\x1b\\[[0-9;]*m//g' > ./sls-hook-url.out",
     "sls-undeploy": "node ./node_modules/serverless/bin/serverless remove",
     "sls-logs-hook": "node ./node_modules/serverless/bin/serverless logs -f alexa-test -t",
-    "sls-logs-results": "node ./node_modules/serverless/bin/serverless logs -f alexa-test -t"
+    "sls-logs-results": "node ./node_modules/serverless/bin/serverless logs -f alexa-test -t",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -118,6 +120,8 @@
     "webpack": "^4.0.0",
     "xml2js": "^0.4.19",
     "yamljs": "^0.3.0",
-    "zlib": "^1.0.5"
-  }
+    "zlib": "^1.0.5",
+    "snyk": "^1.85.0"
+  },
+  "snyk": true
 }
