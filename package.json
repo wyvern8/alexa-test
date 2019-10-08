@@ -97,7 +97,7 @@
     "globule": "^1.2.0",
     "highlight.js": "^9.12.0",
     "http": "^0.0.0",
-    "https-proxy-agent": "^2.2.0",
+    "https-proxy-agent": "^3.0.0",
     "jenkins": "^0.20.1",
     "jsontoxml": "^1.0.0",
     "lodash": "^4.17.5",
