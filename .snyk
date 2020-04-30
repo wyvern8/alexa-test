@@ -1,0 +1,40 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - globule > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - babel-plugin-source-map-support > @babel/helper-module-imports > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - request-promise-native > request-promise-core > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - sqs-consumer > async > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - alexa-sdk > aws-sdk > xmlbuilder > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - smoketail > aws-sdk > xmlbuilder > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - sqs-consumer > aws-sdk > xmlbuilder > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - babel-plugin-source-map-support > @babel/core > @babel/traverse > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - alexa-sdk > aws-sdk > xml2js > xmlbuilder > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - smoketail > aws-sdk > xml2js > xmlbuilder > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - sqs-consumer > aws-sdk > xml2js > xmlbuilder > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - babel-plugin-source-map-support > @babel/core > @babel/helpers > @babel/traverse > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - travis-ci > request > form-data > async > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - babel-plugin-source-map-support > @babel/core > @babel/traverse > @babel/helper-function-name > @babel/template > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - babel-plugin-source-map-support > @babel/core > @babel/helpers > @babel/traverse > @babel/helper-function-name > @babel/template > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
+    - babel-plugin-source-map-support > @babel/core > @babel/helpers > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
+        patched: '2020-04-30T23:56:03.059Z'
