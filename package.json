@@ -95,7 +95,7 @@
     "express-nunjucks": "^2.2.3",
     "express-sse": "^0.4.1",
     "globule": "^1.2.0",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^9.18.2",
     "http": "^0.0.0",
     "https-proxy-agent": "^2.2.0",
     "jenkins": "^0.20.1",
