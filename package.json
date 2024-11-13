@@ -113,7 +113,6 @@
     "sqs-consumer": "^5.5.0",
     "systemjs": "^0.21.0",
     "tempus-fugit": "^2.3.1",
-    "travis-ci": "^2.2.0",
     "uuid": "^3.1.0",
     "webpack": "^5.94.0",
     "xml2js": "^0.5.0",
