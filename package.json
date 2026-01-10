@@ -110,7 +110,7 @@
     "safe-json-stringify": "^1.0.4",
     "smoketail": "^0.1.0",
     "source-map-support": "^0.5.3",
-    "sqs-consumer": "^5.5.0",
+    "sqs-consumer": "^6.0.0",
     "systemjs": "^0.21.0",
     "tempus-fugit": "^2.3.1",
     "uuid": "^3.1.0",
